@@ -205,3 +205,47 @@ export default [
 ```
 
 </details>
+
+## TailwindCSS のインストール
+
+```sh
+npm install --save-dev tailwindcss @tailwindcss/vite
+```
+
+### TailwindCSS の設定
+
+`vite.config.js` で指定
+
+```diff
+ import { defineConfig } from 'vite';
+ import vue from '@vitejs/plugin-vue';
++import tailwindcss from '@tailwindcss/vite';
+
+ // https://vite.dev/config/
+ export default defineConfig({
+-  plugins: [vue()],
++  plugins: [vue(), tailwindcss()],
+ });
+```
+
+`style.css` で
+
+```css
+@import "tailwindcss";
+```
+
+## Storybook
+
+```sh
+npx storybook@latest init
+```
+
+### Storybook に tailwind を適用する
+
+Storybook は Vite の `main.ts` を見ていないので別途 CSS ファイルを読み込む必要がある。
+
+`preview.ts`
+
+```typescript
+import '../src/style.css';
+```
